@@ -1,0 +1,247 @@
+%----------------------------------------------------------------------------------------
+%	PREAMBULE // PACKAGES AND OTHER DOCUME2NT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+\documentclass[a4paper,12pt,twoside,english]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+%	MARGIN SETTINGS
+\usepackage[a4paper,left=2.5cm,right=2cm,top=2.5cm,bottom=2.5cm, twoside]{geometry}
+
+\usepackage{xcolor}
+\usepackage{stmaryrd}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{libertine}
+
+
+
+%\usepackage{cite}
+\usepackage{hyperref} % for references (\ref, \label), url
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=black,      
+    urlcolor=black,
+    citecolor=black,
+    pdfpagemode=FullScreen,
+    }
+\usepackage[
+    %backend=biber, 
+    natbib=true,
+    style=numeric,
+    sorting=none
+]{biblatex} %Imports biblatex package
+
+\addbibresource{biblio.bib} %Import the bibliography file
+
+\usepackage{graphicx} % to include images
+%\usepackage[pdftex]{graphicx}
+\graphicspath{ {figures/} }
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{array, multirow, tabularx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{apalike}
+\usepackage{minitoc}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage[strict]{changepage}
+\usepackage{siunitx}
+\selectlanguage{english}%
+
+\usepackage{enumitem}
+\usepackage{epigraph}
+%\usetikzlibrary{shadows.blur}
+\usepackage{lscape}
+\usepackage{titletoc}
+\usepackage{mdframed}
+
+\usepackage{tabu}
+\usepackage{pdfpages}
+
+\usepackage{arydshln}
+%\usepackage[nonumberlist]{glossaries}
+\usepackage{calc}
+\usepackage[]{titlesec} 
+\definecolor{linkColor}{HTML}{32a852}
+%\usepackage[colorlinks=true,citecolor=linkColor,linkcolor=black]{hyperref}
+
+\addto\captionsfrench{%
+  \renewcommand{\listfigurename}{List of figures}%
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{sectsty}
+%\sectionfont{\color{CentraleRed}}  % sets colour of sections
+%\subsectionfont{\color{uclablue}}  % sets colour of subsections, ou gray, teal 
+\definecolor{darkseagreen}{rgb}{0.56, 0.74, 0.56}
+\usepackage{lipsum}
+
+\title{INSATIABLE V2.0.}
+\author{EYANGO TABI Loic}
+\date{March 2025}
+
+
+%----------------------------------------------------------------------------------------
+%	HEADERS AND FOOTERS
+%----------------------------------------------------------------------------------------
+
+%\fancyhead[RO]{\scshape \leftmark}
+%\fancyhead[L]{\scshape \righttmark}
+\fancyhead{} % clear all header fields
+\fancyfoot{} % clear all footer fields
+%\fancyhead[LE,RO]{\slshape \rightmark}
+\fancyfoot[C]{--~\thepage~--}
+
+\usepackage{emptypage}
+
+%\leftmark : adds name and number of the current top-level structure (for example, Chapter for reports and books classes; Section for articles ) in uppercase letters.
+% \rightmark : adds name and number of the current next to top-level structure (Section for reports and books; Subsection for articles) in uppercase letters.
+
+%%%%%%Glossaire
+%\usepackage{glossaries}
+\usepackage[acronym,xindy,toc]{glossaries} % nomain, if you define glossaries in a file, and you use \include{INP-00-glossary}
+%[nomain,acronym,xindy,toc]
+\makeglossaries
+
+\usepackage[xindy]{imakeidx}
+\makeindex
+%\input{auxilliaires/glossaire}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----------------------------------------------------------------------------------------
+%	DOCUMENT
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+    \begin{titlepage}
+        %\maketitle
+        %----------------------------------------------------------------------------------------
+        %	TITLE PAGE
+        %----------------------------------------------------------------------------------------
+        \includepdf[pages=1]{figures/ED_requirements/page_de_garde.pdf}  % Replace with your actual filename
+        \newpage %passer à une nouvelle page
+        \thispagestyle{empty} %page de garde vide
+    \end{titlepage}
+    
+%\renewcommand{\chaptermark}[1]{\markboth{\textsc{#1}}{}}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\frontmatter % numérote les pages en chiffres romains jusqu'a la commande mainmatter
+
+%----------------------------------------------------------------------------------------
+%	RESUME ET ABSTRACT PAGE
+%----------------------------------------------------------------------------------------
+\input{auxilliaires/abstract} %résumé 
+
+%----------------------------------------------------------------------------------------
+%	QUOTATION PAGE ou DEDICACE
+%----------------------------------------------------------------------------------------
+\clearpage
+\vspace*{0.2\textheight}
+
+\begin{quote}
+\textbf{Citation example :} \\
+Comme lorsque la brume se dissipe, \\ le regard peu à peu trouve une figure\\ dans la vapeur dont les airs sont épaissis, \\ ainsi, perçant l'élément lourd et obscur\\ à mesure que nous approchions du bord, \\l'erreur me quittait ...
+\end{quote} \bigbreak
+
+\hfill 
+-L’Enfer – Chant XXXI, La Divine Comédie, Dante Alighieri
+
+
+
+% \mbox{}
+% \newpage
+%----------------------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+%	ACKNOWLEDGEMENTS
+%----------------------------------------------------------------------------------------
+\input{auxilliaires/Acknowledgements}
+
+
+%----------------------------------------------------------------------------------------
+%	LIST OF CONTENTS/FIGURES/TABLES PAGES
+%--------------------------------------------------‡--------------------------------------
+\setcounter{secnumdepth}{3} % organisational level that receives a numbers
+\setcounter{tocdepth}{3}
+\tableofcontents % Prints the main table of contents
+\listoffigures % Prints the list of figures
+\addcontentsline{toc}{chapter}{List of figures}
+\listoftables % Prints the list of tables
+\addcontentsline{toc}{chapter}{list of tables}
+
+%----------------------------------------------------------------------------------------
+%	Liste des abréviations-
+%----------------------------------------------------------------------------------------
+\input{auxilliaires/abreviations}
+
+
+% --------------------------------------------------------------
+%                         Début du corps
+% --------------------------------------------------------------
+
+\mainmatter
+\setlength{\parskip}{.7em}
+
+%\titlespacing*{\section}{0pt}{.9em}{.8em}
+\renewcommand{\baselinestretch}{1.1}
+
+\fancyhead[RO]{\leftmark}
+\fancyhead[LE]{\textsc{\chaptername~\thechapter}}
+
+%\chapter*{Introduction}
+% \fancyhead{} % clear all header fields
+% \fancyhead[OL]{\textsc{Foreword}}
+% \input{auxilliaires/foreword} %avant-propos
+
+\fancyhead{} % clear all header fields
+
+\fancyhead[RO]{\leftmark}
+\fancyhead[LE]{\textsc{\chaptername~\thechapter}}
+
+\input{chapters/chap1-text}
+\input{chapters/chap2-text}
+\input{chapters/chap3-text}
+\input{chapters/chap4-text}
+
+%\part*{Discussion et conclusion générale}
+\fancyhead{} % clear all header fields
+\fancyhead[OL]{\textsc{General discussion}}
+\input{chapters/chap5-text}
+
+\fancyhead{} % clear all header fields
+\fancyhead[OL]{\textsc{Conclusion}}
+
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+%\printbibliography %Prints bibliography
+\fancyhead{} % clear all header fields
+\fancyhead[OL]{\textsc{Bibliographie}}
+\printbibliography[heading=bibintoc,title={Bibliography}]
+
+%----------------------------------------------------------------------------------------
+
+%: ----------------------- glossary ------------------------
+%\printindex
+%\fancyhead{} % clear all header fields
+%\fancyhead[OL]{\textsc{Glossaire}}
+%\printglossary[title=Glossaire,toctitle=Glossaire]
+
+%\input{auxilliaires/glossaire} 
+
+
+
+\end{document}  

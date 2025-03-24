@@ -1,0 +1,95 @@
+% \chapter*{\Huge Big Title Here}
+% \addcontentsline{toc}{chapter}{Big Title Here}  % Add to TOC if needed
+
+\chapter{General discussion} % Main chapter title
+
+
+%----------------------------------------------------------------------------------------
+%	SECTION 
+%----------------------------------------------------------------------------------------
+\section{Main contributions}
+%-----------%-----------
+%	SOUS-SECTION 
+%-----------%-----------
+
+\subsection{Methodological progress}
+
+\paragraph{Integration of sensor-based and mechanistic models} A central methodological advancement of this thesis lies in the integration of deep learning diagnostic tools and mechanistic epidemiological models for improved disease management, specifically applied to the Bovine Respiratory Disease (BRD) context. This thesis explicitly addressed the complexities inherent in integrating disparate model types, reconciling sensor-driven, short-term diagnostic accuracy with long-term epidemiological prognosis reliability. Inspired by the "Mixture of Experts" (MoE) concept, our methodology systematically separates diagnostic and prognostic tasks, assigning each model type to its respective domain of expertise. This loose coupling has two main methodological strengths:
+
+\begin{enumerate}
+    \item Diagnostic specialization: Deep learning excels at extracting timely and accurate diagnostic insights from sensor observations, even under conditions of limited and noisy data (72\% accuracy with less than 30 lung ultrasound videos). This demonstrated capability supports practical, short-term veterinary decision-making by automating complex clinical assessments that otherwise require significant veterinary expertise and resources. Remarques: [est-ce grave de n'avoir "que" 72\% de précision ? -> limitation à discuter]
+    
+    \item Prognostic specialization: Mechanistic epidemiological models reliably extend diagnostic insights into accurate, long-term disease forecasts. Calibrating these models using empirical veterinary observations resulted in robust epidemiological predictions (forecast accuracy RMSE < 10\%), demonstrating their value for long-term disease management and strategic decision-making.
+\end{enumerate}
+
+\paragraph{Explicit integration and propagation of uncertainty} One of the essential questions addressed in this thesis concerns uncertainty management: How to explicitly handle uncertainty inherent in sensor-based observational data within hybrid diagnostic-prognostic models? This question is especially relevant for BRD diagnostics, given the inherent complexity and ambiguity of symptoms, compounded by noisy and limited ultrasound data acquisition.
+To explicitly manage uncertainty, we introduced a Bayesian Deep Mechanistic approach where uncertainty quantification via Monte Carlo Dropout (MCD) played a pivotal role. We quantified prediction uncertainty at the diagnostic level, filtering out the most uncertain predictions and consequently reducing diagnostic error rates from an initial RRMSE of 39\% down to 32\%. Additionally, propagating these uncertainties into mechanistic model calibration, via weighted Approximate Bayesian Computation, further improved the prognosis reliability, achieving a forecast RRMSE of 27.2\%, nearly matching the veterinarian-informed baseline (23\% RRMSE).
+
+Our proposed solution is interesting because it directly confronts the real-world complexities of sensor-driven observations, integrating probabilistic quantification of uncertainty into the predictive decision-making pipeline. This ensures robust diagnosis and prognosis even in scenarios where data quality is inherently compromised or limited, a frequent reality in livestock management practices.
+
+Remarques: [à développer, notamment en expliquant plus en détail "pourquoi ça marche" et l'articulation entre prédiction ML et prédiction méca]
+
+\paragraph{Pathogen identification through mechanistic model distinguishability} A significant methodological innovation introduced in this thesis was the pathogen-specific mechanistic model identification using Approximate Bayesian Computation (ABC) combined with multinomial logistic regression. By employing symptomatic trajectory data, we successfully distinguished between multiple candidate mechanistic models tailored for different BRD pathogens—Orthopneumovirus bovis (BRSV), Mannheimia haemolytica (Mh), and Mycoplasmopsis bovis (Mb)—achieving an average identification accuracy of approximately 93\% (BRSV=96\%, Mh=90\%, Mb=87\%).
+
+This methodological step addresses a fundamental challenge: how to discriminate between overlapping symptomatic presentations of distinct pathogens. Our approach is innovative due to its explicit focus on model distinguishability, providing clear, data-driven identification that can inform targeted pathogen-specific interventions.
+
+\paragraph{Integration with bioeconomic models and practical implications} Our methodological framework explicitly extends beyond biological diagnostics by integrating bioeconomic considerations. By coupling mechanistic model outcomes with economic evaluations (expected profits, antibiotic usage metrics, and treatment costs), our approach offers a practical, real-world impact measure that assesses pathogen-informed management decisions.
+This integration is particularly valuable because it tangibly demonstrates that pathogen-informed mechanistic interventions not only significantly reduce antimicrobial usage (by approximately 44\%) but simultaneously maintain or slightly improve economic outcomes (+1\% net profit) compared to conventional empirical treatments. These bioeconomic insights further illustrate the practical relevance of our methodological integration for improving livestock management, reducing antibiotic misuse, and enhancing economic sustainability.
+
+\paragraph{Structured modularity and methodological scalability} An essential and innovative methodological dimension of this thesis is its emphasis on modularity. Our hybrid modelling framework maintains clear separations between diagnostic (deep learning), prognostic (mechanistic models), and economic evaluation modules, facilitating independent model development, calibration, and validation by different disciplinary experts (epidemiologists, veterinarians, and deep learning specialists). Unlike tightly integrated architectures (e.g., Neural Differential Equations), our loosely coupled, modular approach supports interpretability [explain how our approach supports interpretability], ease of model maintenance, retraining, adaptation to diverse contexts (give examples). This is particularly attractive for practical agricultural implementation, where multiple stakeholders must collaborate on disease management.
+
+
+\subsection{Practical contributions}
+
+%-----------
+%	SOUS-SOUS-SECTION 
+%------------
+\paragraph{Data collection}. The collection of data... 
+
+\section{Implications}
+
+\begin{itemize}
+    \item Implementation des capteurs et de la remontée des données
+    \item J'ai également participé aux évènements de communication de ces travaux aux éleveurs qui ont accepté de prendre part au projet SEPTIME. ce qui permet de co-construire des outils qui seront plus rapidement acceptés.
+\end{itemize}
+
+
+Il reste à constuire une bdd unifiés pour faciliter la publication et l'utilisation des données multimodales
+
+
+\section{Limitations}
+Notamment (pas limitatif : reprendre chaque contribution et chaque question posée dans l'introduction générale)
+\begin{itemize}
+    \item conditions concrètes de mise en \oe{}uvre en élevage, obstacles pratiques, empiriques et théoriques au fonctionnement des ces méthodes, à leur adoption + discuter le rôle des vétérinaires (seuls habilités à prescrire)
+    \item spécificités possibles des BRD / du système de production par rapport à la méthodologie (capacités d'extrapolation ?)
+\end{itemize}
+
+%-----------------------------------
+%	SECTION 
+%-----------------------------------
+\section{Pending questions and perspectives}
+
+
+\paragraph{Integration of multimodal Bayesian mechanistic models} A relevant and natural extension of this work involves developing multimodal Bayesian mechanistic models capable of simultaneously exploiting audio and visual diagnostic data. Indeed, veterinarians, farmers, and experts typically evaluate animal health through a holistic combination of visual cues—such as observing fatigue, nasal discharge, or behavioral alterations—and auditory assessments, including the detection of coughing, sneezing, or abnormal respiratory sounds. Although our methodological advancements have demonstrated strong diagnostic performance through visual sensor data alone, incorporating auditory signals offers potential for improved sensitivity to early or subtle disease symptoms. However, integrating these heterogeneous data streams poses significant methodological challenges, particularly concerning alignment, temporal synchronization, and effective joint representation learning. Inspired by Zhu et al. (2020), future research may benefit from employing deep audio-visual learning methods such as audio-visual localization, separation, and representation learning. For instance, audio-visual separation methods could assist in isolating critical respiratory sound signals from noisy environmental conditions, while representation learning techniques could provide meaningful joint embeddings for robust multimodal diagnostic classification. Nonetheless, this perspective requires careful validation given the complexity inherent in combining multiple sensory inputs in practical livestock conditions.
+ 
+
+\paragraph{Explicit uncertainty estimation: Conformal prediction versus variational inference} Our thesis leveraged variational inference (Monte Carlo Dropout) for uncertainty quantification, effectively reducing diagnostic error by explicitly modeling uncertainty in sensor-based predictions. However, recent developments in Explainable AI (XAI) suggest that integrating conformal prediction approaches could complement Bayesian methods by providing statistical coverage guarantees. As Matiz \& Barner (2020) highlighted, conformal prediction offers explicit statistical assurances regarding uncertainty coverage, a property not inherently guaranteed by variational inference alone. While Bayesian methods optimize for average predictive accuracy, conformal prediction provides robust and calibrated uncertainty intervals without assumptions about the underlying data distribution. Future research should therefore investigate integrating conformal prediction into our deep mechanistic framework, potentially resulting in hybrid models combining the accuracy of Bayesian approaches with conformal statistical guarantees. However, practical integration will necessitate careful methodological consideration to balance computational complexity against reliability gains, especially in realistic diagnostic scenarios characterized by noisy or sparse data.
+
+\paragraph{Inference robustness} In mechanistic epidemiological modeling, inference robustness—ensuring consistency of predictions across plausible model variations—is a critical component of model reliability for decision-making. Throughout this thesis, we employed Approximate Bayesian Computation (ABC) with multinomial logistic regression to identify and discriminate among pathogen-specific models, achieving strong identification performance. Yet, alternative simulation-based inference methods such as ABC Sequential Monte Carlo (ABC-SMC) might further enhance robustness by efficiently exploring the parameter space, thereby potentially improving calibration accuracy and parameter estimation stability. Future work should systematically evaluate such alternative numerical solvers, explicitly comparing inference robustness across ABC variants or recently developed approaches such as ABC-SMC. Such assessments, including comparisons to recent methods demonstrated by Beaunée (BBRWE ? son packge à gael) ou sinon (Francesco Pinotti, de l'UMR EPIA, Simulation-based inference with complex data and simulators).
+
+\paragraph{Robust decision-making} Although our thesis has effectively integrated bioeconomic models to assess real-world implications, further strengthening of the coupling between mechanistic predictions and economic outcomes is desirable. Particularly, integrating Bayesian posterior distributions into economic models may allow construction of uncertainty sets, ensuring that economic decisions remain robust against prediction uncertainty. For instance, leveraging Bayesian posterior distributions could help construct decision strategies that uniformly encompass plausible epidemiological outcomes, providing safer economic recommendations under uncertainty. Such methodologies have demonstrated practical effectiveness in ensuring safety under uncertain predictions (Eyango et al., 2024). Future research could thus aim to explicitly integrate posterior predictive uncertainty within bioeconomic decision-making, enhancing both theoretical coherence and real-world utility of pathogen-informed economic decisions.
+
+\paragraph{A deep mechanistic model with prognosis expert selection} An important future research avenue involves integrating the developed deep mechanistic diagnostic frameworks (chapter 4) with the pathogen-specific prognosis expert selection mechanisms validated in chapter 3, leveraging the pulmonary ultrasound video datasets collected (chapter 2). The envisioned approach would utilize deep learning predictions from ultrasound videos to infer clinical states at discrete assessment points, subsequently employing numerical solvers (e.g., ABC methods) to distinguish the most likely pathogen-specific mechanistic models. This approach could be validated by comparison with ground-truth pathogen identification via biological examination (blood samples). Through such validation, future research could rigorously quantify the direct benefits of pathogen-informed mechanistic interventions in terms of antimicrobial usage reduction and net profit optimization, thus bridging diagnostic precision, epidemiological forecasting accuracy, and economic viability in livestock management. 
+
+\paragraph{Application to related domains - transferability} Finally, the modular methodological framework proposed in this thesis inherently facilitates adaptation and scalability across diverse agricultural contexts. Future work could explore transferring and assessing the coupling methodology to related agricultural domains, such as pig batch management (Sicard vianney thèse) or plant disease diagnostics ( N parisey articles). Such applications would test and potentially confirm the generalizability and scalability of our structured modular approach, further extending its methodological relevance and practical impact across broader agricultural management practices.
+
+\section{Conclusion}
+
+% In conclusion, the methodological progress of this thesis demonstrates how to integrating deep learning with mechanistic epidemiological models—grounded in explicit uncertainty quantification—significantly improves both diagnostic accuracy and epidemiological prognosis from sensors observations. 
+
+
+% By explicitly addressing the complexities and uncertainties inherent in sensor-based disease diagnostics, our approach provides practical, actionable solutions for more effective and sustainable livestock disease management strategies.
+
+% remarks [le but est d'avoir construit de nouvelles connaissances et ouvert de nouvelles questions, pas juste d'avoir une sorte de réponse binaire]
+
+\newpage\thispagestyle{empty}

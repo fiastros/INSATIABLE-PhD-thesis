@@ -1,0 +1,85 @@
+\chapter*{Foreword - à enlever !} % Main chapter title
+\addcontentsline{toc}{chapter}{Foreword}  
+
+%Le but de l'avant-propos est d'améliorer les conditions dans lesquelles les membres d’un jury, vont pouvoir l’apprécier.
+%\textbf{C’est une partie facultative du travail de recherche dans laquelle l’auteur peut expliquer les raisons qui l’ont incité à étudier le sujet en question, tout en exposant le but poursuivi et les difficultés rencontrées en cours de recherche.}
+
+The conjoining of dynamical systems and deep learning has become a
+topic of great interest. In particular, neural differential equations (NDEs)
+demonstrate that neural networks and differential equation are two sides
+of the same coin. Traditional parametrised differential equations are a
+special case. Many popular neural network architectures, such as residual
+networks and recurrent networks, are discretisation.
+NDEs are suitable for tackling generative problems, dynamical systems,
+and time series (particularly in physics, finance, . . . ) and are thus of
+interest to both modern machine learning and traditional mathematical
+modelling. NDEs offer high-capacity function approximation, strong priors
+on model space, the ability to handle irregular data, memory eficiency,
+and a wealth of available theory on both sides.
+This doctoral thesis provides an in-depth survey of the field.
+Topics include: neural ordinary differential equations (e.g. for hybrid
+neural/mechanistic modelling of physical systems); neural controlled differential
+equations (e.g. for learning functions of irregular time series);
+and neural stochastic differential equations (e.g. to produce generative
+models capable of representing complex stochastic dynamics, or sampling
+from complex high-dimensional distributions).
+Further topics include: numerical methods for NDEs (e.g. reversible
+differential equations solvers, backpropagation through diferential equations,
+Brownian reconstruction); symbolic regression for dynamical systems
+(e.g. via regularised evolution); and deep implicit models (e.g. deep
+equilibrium models, differentiable optimisation).
+We anticipate this thesis will be of interest to anyone interested in the
+marriage of deep learning with dynamical systems, and hope it will provide
+a useful reference for the current state of the art.
+
+
+
+\subsubsection*{Motivation}
+
+We have two goals in writing this document. One: to satisfy the requirements of a
+PhD, by writing a thesis describing our original research. Two: to give an accessible
+survey of the new, rapidly developing, and in our opinion very exciting field of neural
+differential equations. To the best of our knowledge this is the first survey to have
+been written on the topic.
+We hope this will prove useful to the interested reader! Along the way we shall cover a
+wide variety of applications, both to classical mathematical modelling, and to typical
+machine learning problems.
+
+
+\subsubsection*{Getting started}
+We will assume throughout that the reader is familiar with the basics
+of ODEs and with the basics of modern deep learning, but we will not assume an
+in-depth knowledge of either. On the basis that many of our readers may come from a
+traditional applied mathematics background without much exposure to deep learning,
+then Appendix A also provides a summary of the relevant deep learning concepts we
+shall assume. It also provides references for learning more about deep learning.
+The material on neural SDEs will assume familiarity with SDEs.
+Beyond these (relatively weak) assumptions, we will introduce concepts as we need
+them. Various parts of the text will touch on topics such as rough path theory,
+or numerical methods for differential equations. In each case we assume little-tono
+familiarity on the part of the reader, and where necessary provide references for
+learning more about them.
+The next chapter (on neural ODEs) makes an effort to explicitly spell out even `elementary'
+details such as the existence of solutions to ordinary differential equations,or the use of cross entropy as a loss function. Later chapters assume increasing levels
+of sophistication; it is recommended to read them in sequential order.
+
+Code The reader interested in applying these techniques is strongly encouraged to
+write some example code.
+Each chapter contains a few numerical examples usually on toy datasets for ease
+of understanding. The corresponding code is both available and well-documented:
+they can be found as the examples of the Diffrax software library [Kid21a], which is
+written for the JAX framework [Bra+18].
+Indeed standard software libraries for solving and differentiating differential equations
+make working with NDEs essentially easy. These are discussed in Section 5.6
+(including both Diffrax and other options for other frameworks). These libraries are
+again well-documented and contain numerous examples.
+
+
+Experiments The material here focuses on presenting the theory of NDEs; correspondingly
+our numerical examples will tend to be on toy datasets chosen for ease of
+understanding. Real world (and possibly very large scale) applications of these techniques
+may be found in the original papers, which are referenced in the text alongside
+each individual topic.
+
+
+\textcolor{red}{je dois rajouter une partie pour les notations scientifiques/mathématiques ? comme la thèse "On neural differential equations". partie appélé "Notations"}
