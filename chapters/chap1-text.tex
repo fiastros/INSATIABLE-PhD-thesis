@@ -138,6 +138,13 @@ Addressing these challenges is essential for enhancing the reliability and scala
 
 A note on history (un rappel de l'ia, les grands courants... ce qu'on voit tous les jours ne reflètent qu'une partie de l'iceberg imergé ??? bref
 
+ou est-ce que nous on se situe par rapport aux DL, modèle epi et modèle hybride.
+Ensuite je me suis intéressé à tel et tel partie (par rapoport aux choses faites dans les modèles hybrides)
+
+
+Rajouter stéto dans les perspectives (discussions)
+
+
 \subsection{Precision agriculture: hardware and sensors}
 
 Precision agriculture represents an innovative approach to farming that focuses on optimizing inputs (such as feed, medication, and energy) while maximizing outputs, including net profit and environmental sustainability. This paradigm is rapidly being adopted in livestock farming to enhance decision-making and operational efficiency. At its core, precision agriculture is supported by a robust infrastructure consisting of both hardware and software components. In this subsection, we concentrate on the sensors that underpin data collection:
@@ -259,6 +266,13 @@ Each of these methodologies individually addresses certain specific aspects of i
 
 \subsection{Hybrid modelling: machine learning and epidemiological models}
 
+[Raccourci cette partie pour garder le tableau, le plus important c'est de montrer les objectifs (summarize), les types de couplages (summarize), montrer les axes que nous mettons en avant]
+En terme d'objectif voici les cases que nous cochons: model parameterizination, disease intervention assessemnt and optimization, restrospective epidemic course analysis, infectious disease forecasting (par contre préciser qu'ici en réalité nous avons n'avons pas fait de forecast dans le sens statistique du terme jusqu'à aller à l'évaluation des performances, transmission inference, outbreak detection]
+
+[Résumé les objectifs en un paragraphe. Etendre par contre le type de d'intégration et comment c'est fait. mettre égalemenet le rôle que joue chaque partie ?] [the roles are long-term forecast (or prognose) or short-term predictions]
+
+[numerotez les approches d'intégration, ça va m'être utile pour la suite]
+
 This section serves as a concise narrative review of various methodologies for integrating machine learning models with epidemiological models, offering a critical perspective on their limitations. Addressing these limitations is central to the contributions of this thesis.
 
 This section presumes that the reader possesses a foundational understanding of ensemble techniques in modelling, specifically bagging, boosting, and stacking. They are pivotal in enhancing the global performance by combining multiple models. These methods aim to reduce errors, improve accuracy, and increase the robustness of predictions. Stacking Combines outputs from several distinct models using an additional "meta-model," learning optimal combinations for improved predictions. Boosting refers to sequentially training multiple weak predictive models, each aiming to correct errors from previous models, thus progressively improving overall prediction accuracy. Bagging (or Bootstrap Aggregating) refers to parallel training of multiple unique models (while stacking used distinct models, bagging uses multiple instances but of the same model) on random subsets of data (with replacement), thereby reducing prediction variance and mitigating over-fitting.
@@ -281,7 +295,7 @@ The purposes of the hybrid models currently found in the litterature can be grou
 \end{itemize}
 
 
-Methodologicaly-wise, these models can also grouped into nine primary frameworks:
+Methodologicaly-wise, these models can also grouped into nine primary integration approach:
 \begin{itemize}
     \item AI-augmented epidemiological models: These models directly replace (or augment) specific components (e.g., parameters or even entire sub-models) of the mechanistic framework with machine learning outputs. In many cases, the machine learning component is trained end‐to‐end alongside the mechanistic model or is integrated into the numerical solver (réfs heres). In an end-to-end configuration, the machine learning module’s weights are updated simultaneously with the mechanistic model’s parameters, creating a tightly coupled structure that learns both representation and dynamics jointly. 
     \item Epidemiological models with improved observational data: In these approaches, AI is applied to augment or “clean” raw data inputs before they feed into the mechanistic model. Techniques include using machine learning to extract features from social media, search trends, or satellite imagery(réfs heres). Machine learning operates as a pre-processor and the mechanistic model then uses the enhanced, higher-quality data for calibration and simulation. This is typically a weakly coupled integration because the machine learning module’s output is treated as a fixed input to the downstream mechanistic model rather than being jointly optimized with it.
@@ -301,84 +315,115 @@ These findings can be summarized into a table \ref{tab:integration_methods}:
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{|p{4cm}|p{5cm}|p{3cm}|p{4cm}|p{4cm}|p{4cm}|p{6cm}|}
 \hline
-\textbf{Name} & \textbf{Objective} & \textbf{Coupling Type} & \textbf{ML Architecture} & \textbf{Epidemiological Architecture} & \textbf{Aggregation type} & \textbf{Full Reference} \\ \hline
+\textbf{Integration approach} & \textbf{Objective} & \textbf{Coupling Type} & \textbf{ML Architecture} & \textbf{Epidemiological Architecture} & \textbf{Aggregation type} & \textbf{Full Reference} \\ \hline
 
 AI-augmented epidemiological models &
 Infectious disease forecasting, Model parametrisation and calibration &
 Strong coupling &
-Neural networks, regression &
-Mechanistic epidemiological models &
+Neural networks, regression, tree-based models replacing parts of the traditional models for parameter estimation &
+Mechanistic epidemiological models with components replaced or augmented with by ML &
 End-to-end training &
 Arik et al. (2021) \\ \hline
 
 Epidemiological models with improved observational data &
-Outbreak detection &
+Outbreak detection, model parametrization and calibration &
 Weak coupling &
-NLP, tree-based models, SVM, MLP &
-Bayesian epidemiological frameworks &
+methods like SVM , tree-based, NLP, MLP algorithms used to extract and refine features from non tradictional surveillance data (text) &
+Bayesian epidemiological frameworks (or classical compartmental or mechanistic models updated using enhanced observational inputs derived from diverse data sources) &
 Stacking, Bayesian model selection &
 Tuarob et al. (2015), Rosato et al.(2023), Kandula et al.(2019) \\ \hline
 
-PINNs (physics-informed neural networks) / EAAMs (epidemiology-aware AI models) &
-Model parameterisation and calibration &
+PINNs (physics-informed neural networks) / EAAMs (Epidemiology-Aware AI models) &
+Model parametrisation and calibration, Infectious Disease Forecasting &
 Strong coupling &
-Physics-informed neural networks &
-Differential equations (Compartmental, renewal equations) &
+Neural networks (DNN, CNN, RNN, GNN) that incorporate physics-based loss functions (combining data loss and residual loss enforcing differential equations) &
+Differential equations-based mechanistic models(Compartmental, renewal equations e.g: SIR, etc) &
 End-to-End training &
 Cai, M., Karniadakis, G. E., \& Li, C. (2022). Fractional SEIR model and data-driven predictions of COVID-19 dynamics of Omicron variant. \textit{Chaos}, 32, 071101; 
 
-Ghosh, S. et al. (2023). Understanding the implications of under-reporting, vaccine efficiency, and social behavior on the post-pandemic spread using physics informed neural networks. \textit{PLoS One}, 18, e0290368.
-
-Barmparis \& Tsironis (2022), De rosa et al. (2023) \\ \hline
+Ghosh, S. et al. (2023). Understanding the implications of under-reporting, vaccine efficiency, and social behaviour on the post-pandemic spread using physics informed neural networks. \textit{PLoS One}, 18, e0290368. Barmparis \& Tsironis (2022), De rosa et al. (2023) \\ \hline
 
 AI models incorporating epidemiological input features &
 Infectious disease forecasting &
 Weak coupling &
-Tree-based models &
-Mechanistic epidemiological models &
+ML models (e.g: FFN, RNN, Tree-based models) that integrate epidemioloigcal indicators as part of their input features &
+Mechanistic epidemiological models supplying key epidemiological metrics (e.g contact rates, parameters) as inputs to the AI model &
 Feature-level integration &
 - \\ \hline
 
-Surrogate modeling / synthetically-trained AI models &
-Model parameterisation and calibration, Disease intervention assessment and optimization, Retrospective epidemic course analysis &
+Surrogate modelling / synthetically-trained AI models &
+Model parametrisation and calibration, Disease intervention assessment and optimization, Retrospective epidemic course analysis &
 Weak coupling &
-Tree-based models, neural network surrogates &
-Agent-based models &
-Surrogate modeling &
+Lightweight neural networks or 
+Tree-based models trained on synthetic datasets &
+simulation-based mechanistic models (compartmental or Agent-based models) for synthetic generation &
+Surrogate modelling &
 Anirudh, R. et al. (2022). Accurate Calibration of Agent-based Epidemiological Models with Neural Network Surrogates. \textit{Proceedings of the 1st Workshop on Healthcare AI and COVID-19, ICML 2022}, vol. 184, pp. 54–62, PMLR. \\ \hline
 
 Ensemble learning frameworks &
 Infectious disease forecasting &
 Weak coupling &
-Ensemble learning frameworks (LSTM) &
-Mechanistic epidemiological models &
-Weighted averaging, stacking, boosting &s
+combinations of models such as LTSM, stacking and boosting methods to merge prediction from different sources &
+Traditional mechanistic models whose forecasts are combined with AI-based predictions &
+Weighted averaging, stacking, boosting &
 Kandula et al. (2018), Adiga et al. (2021), Nadler et al. (2020),
 Maniamfu \& Kameyama (2023), Delli compagni et al. (2022)\\ \hline
 
 Bayesian neural networks &
 Model parameterisation and calibration &
 Strong coupling &
-Bayesian neural networks &
-Agent-based models, Ordinary differential equations &
+Bayesian neural networks enabling uncertainty quantification in parameters estimation &
+mechanistic model providing a probabilistic structure (e.g SIR models with uncertainty in parameters) Agent-based models, Ordinary differential equations &
 Bayesian inference &
 Kwok, W. M., Streftaris, G., \& Dass, S. C. (2023). Laplace based Bayesian inference for ordinary differential equation models using regularized artificial neural networks. \textit{Stat. Comput.}, 33, 124. \\ \hline
 
 AI-enhanced optimization frameworks &
 Disease intervention assessment and optimization &
 Strong coupling &
-Reinforcement learning, neural networks &
-Optimal control theory-based frameworks &
+Reinforcement learning, neural networks, optimal control neural networks, and game-theoretic models designed to learn optimal intervention strategies &
+often agent-based epidemiological models that serve as environments for optimization and decision-making &
 Reinforcement learning, optimal control &
 Yien et al. (2023), Jian et al. (2023), Malloy \& Brandeau (2022), Zang et al. (2022), Janko et al. (2023) \\ \hline
 
 Cluster-based transmission analysis frameworks &
 Infectious disease forecasting, Transmission inference &
 Weak coupling &
-Hierarchical clustering, Graph neural networks &
+Clustering algorithm (k-means, Hierarchical clustering...) and network analysis methods (Graph neural networks) to identify and analyze clusters in transmission data &
+Network-based or agent-based models that capture transmission dynamics and suppot the identification of key transmission clusters
 Individual-based models &
-Clustering &
-- \\ \hline
+Clustering & - \\ \hline
+\end{tabular}%
+}
+\caption{Summary of nine primary integration method types.}
+\label{tab:integration_methods}
+\end{table}
+
+% je pourrais rajouter deux colonnes pour les avantages et les limites ou les architectures utilisés pour le deep comme pour les modèles epidelio
+
+\begin{table}[htbp]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|p{4cm}|p{5cm}|p{3cm}|p{4cm}|p{4cm}|p{4cm}|p{6cm}|}
+\hline
+\textbf{Integration approach} & \textbf{Objective} & \textbf{Description} & \textbf{training process}  & \textbf{References} \\ \hline
+
+
+PINNs (Physics-Informed Neural Networks) &
+Model parametrisation and calibration, infectious disease forecasting &
+A neural network is trained to approximate the state variables (such as susceptible, infected, and recovered populations) as functions of time. The key design feature is the incorporation of the governing differential equations (for example, those from a classical SIR model) directly into the loss function. This composite loss includes a data loss term (comparing network predictions to observed time-series data) and a residual loss term that forces the solution to satisfy the epidemiological equations &
+
+Training Process: Gradient-based optimization (using methods like Adam or SGD) is applied to minimize the combined loss function, ensuring that both the data fit and the differential constraints are respected &
+
+Original Citations: References [32, 59–66] \\ \hline
+
+PINNs (Physics-Informed Neural Networks) &
+Model parametrisation and calibration, infectious disease forecasting &
+A neural network is trained to approximate the state variables (such as susceptible, infected, and recovered populations) as functions of time. The key design feature is the incorporation of the governing differential equations (for example, those from a classical SIR model) directly into the loss function. This composite loss includes a data loss term (comparing network predictions to observed time-series data) and a residual loss term that forces the solution to satisfy the epidemiological equations &
+
+Training Process: Gradient-based optimization (using methods like Adam or SGD) is applied to minimize the combined loss function, ensuring that both the data fit and the differential constraints are respected &
+
+Original Citations: References [32, 59–66] \\ \hline
+
 \end{tabular}%
 }
 \caption{Summary of nine primary integration method types.}
@@ -387,10 +432,14 @@ Clustering &
 
 
 
-    \begin{itemize}
-        \item Physics-Informed Neural Networks (PINNs): PINNs integrate known governing equations (e.g., differential equations describing infectious dynamics) as soft constraints into neural networks during training. The neural network is guided by both observed data and theoretical knowledge, ensuring physically plausible predictions and improved extrapolation beyond the training distribution.
-        \item Neural Differential Equations (Neural ODEs/SDEs): Neural ODEs or SDEs embed neural networks into differential equations, allowing the modelling of dynamic processes through continuous-time representations. Such integration directly captures temporal dynamics, offering more flexibility and interpretability compared to classical discrete-time deep learning methods.
-    \end{itemize}
+
+
+
+
+\begin{itemize}
+    \item Physics-Informed Neural Networks (PINNs): PINNs integrate known governing equations (e.g., differential equations describing infectious dynamics) as soft constraints into neural networks during training. The neural network is guided by both observed data and theoretical knowledge, ensuring physically plausible predictions and improved extrapolation beyond the training distribution.
+    \item Neural Differential Equations (Neural ODEs/SDEs): Neural ODEs or SDEs embed neural networks into differential equations, allowing the modelling of dynamic processes through continuous-time representations. Such integration directly captures temporal dynamics, offering more flexibility and interpretability compared to classical discrete-time deep learning methods.
+\end{itemize}
 
 Despite their promising advantages, hybrid and ensemble models have inherent challenges:
 % Despite notable advancement in the scientific community, there is a conceptual gap, between the raw unstructured livestock data that can be captured and the strong theoretical knowledge we have of the complex underlying infectious mechanisms. This basically allows to ground the theoretical knowledge we have on a complex mechanisms to the context-specific observations, hence harness the best of both world. 

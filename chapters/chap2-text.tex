@@ -66,31 +66,9 @@ This study therefore addresses two scientifically complementary research questio
 This research provided three core contributions:
 
 \begin{enumerate}
-    \item A deep learning model based on a spatio-temporal CNN-RNN architecture was trained to classify animals’ clinical health status (symptomatic or asymptomatic) using pulmonary ultrasound videos. This model achieved an accuracy of approximately 72\% (table \ref{tab:feature_extractor_performance}). Specifically, the deep learning architecture combined convolutional neural networks (CNNs), serving as spatial feature extractors, and recurrent neural networks (RNN), which captured temporal information. Throughout the experiments, only the feature-extractor component—the CNN architecture—was varied, while the RNN architecture remained fixed across all tested models. The CNN's goal was to identify and extract relevant spatial features within individual ultrasound frames, such as lesions, pleura lines, or other anatomical details indicative of BRD. Conversely, the RNN aimed to leverage temporal sequences of these extracted features to model their evolution over the video duration. Different CNN architectures were evaluated, including EfficientNetB7, InceptionResnetV2, InceptionV3, VGG16, and an ensemble model combining InceptionV3 with InceptionResnetV2. Among these architectures, InceptionV3 achieved the highest performance, with a weighted F1-score of 70\%, precision of 72\%, recall of 69\%, and an overall accuracy of 69\%. In contrast, VGG16 demonstrated significantly lower performance, yielding an F1-score of only 14\%. The performance of the final selected deep learning model was assessed on two separate farms to verify its robustness and generalizability under contrasting practical conditions.
-    
-    \begin{table}[h]
-        \centering
-        \renewcommand{\arraystretch}{1.2} % Adjust row height for better readability
-        \begin{tabularx}{\linewidth}{l *{4}{>{\centering\arraybackslash}X}}
-            \toprule
-            Feature Extractor & \small Weighted Precision & \small Weighted Recall & \small Weighted F1-score & \small Accuracy \\
-            \midrule
-            
-            EfficientNetB7 & 0.67 & 0.62 & 0.63 & 0.62 \\
-            InceptionResnetV2 & 0.71 & 0.50 & 0.49 & 0.50 \\
-            InceptionV3 & \textbf{0.72} & \textbf{0.69} & \textbf{0.70} & \textbf{0.69} \\
-            VGG16 & 0.09 & 0.31 & 0.14 & 0.31 \\
-            InceptionV3 + InceptionResnetV2 & 0.71 & 0.62 & 0.63 & 0.62 \\
-            
-            \bottomrule
-        \end{tabularx}
-        \caption{Diagnosis performance of different deep learning architecture}
-        \label{tab:feature_extractor_performance}
-    \end{table}
-    \newpage 
+    \item Creation of an original dataset comprising pulmonary ultrasound videos with corresponding veterinary clinical annotations, providing a valuable resource for future BRD diagnostic and epidemiological research. Data collection occurred from January to June 2023, spanning a 30-day period post-arrival of calves on nine farms, each managing multiple batches of animals. Clinical annotations classified animals as symptomatic or asymptomatic according to veterinary-defined criteria (rectal temperature above 39.7°C and presence of at least one clinical symptoms such as cough or nasal discharge). Practical constraints, including animal immobilization, shaving the scan area, and veterinary availability, limited data quantity to approximately thirty annotated ultrasound videos. [\textcolor{red}{be more factual on the quantity of observation per class}]
 
-    
-    \item Veterinary clinical assessments enabled the parametrization of the BRD mechanistic epidemiological model \ref{picault_modelling_2022}. The sensitivity analysis conducted by Picault in 2022 revealed three parameters as the most influential in controlling BRD dynamics, antimicrobial usage, and mortality rates. These parameters are the \textbf{ pathogen transmission rate}, which describes how rapidly an infectious agent spreads between animals; the \textbf{mean duration in the infectious state}, representing how long an infected animal can transmit the disease; and the \textbf{mean duration in the pre-infectious state}, indicating how long an animal remains exposed before becoming actively infectious. Accurate estimation of these parameters is critical because they substantially influence infection spread, disease severity, and effectiveness of control strategies, including antimicrobial use. This parametrization (fig \ref{tab:parameter_comparison}) allowed predictions of BRD dynamics over a 30-day period, achieving forecasting accuracy with a root mean squared error (RMSE) below 5\% in certain farms. However, the general applicability of the average pathogen model across all scenarios warrants caution. We hypothesize that this simplification could limit its accuracy in predicting outbreaks driven primarily by viral infections. Indeed, Picault himself stated, "our assumption that the same 'average' pathogen could be used for all scenarios is indeed questionable. BRD is intrinsically a multi-pathogen disease, and the exact prevalence of each pathogen, their possible interactions, as well as the diversity of strains, can be expected to change the dynamics of infection and disease severity \cite{Kudirkiene2021, Becker2020}. In this study we assumed an average pathogen to keep the model as simple as possible. However, in further study, model parameters reflecting microbiological characteristics (e.g., the mean duration of infectiousness and the pathogen transmission rate) could be made pathogen-specific to allow for comparisons between various pathogens."
+    \item Veterinary clinical assessments enabled the parametrization of the BRD mechanistic epidemiological model \cite{picault_modelling_2022}. The sensitivity analysis conducted by Picault in 2022 revealed three parameters as the most influential in controlling BRD dynamics, antimicrobial usage, and mortality rates. These parameters are the \textbf{ pathogen transmission rate}, which describes how rapidly an infectious agent spreads between animals; the \textbf{mean duration in the infectious state}, representing how long an infected animal can transmit the disease; and the \textbf{mean duration in the pre-infectious state}, indicating how long an animal remains exposed before becoming actively infectious. Accurate estimation of these parameters is critical because they substantially influence infection spread, disease severity, and effectiveness of control strategies, including antimicrobial use. This parametrization (fig \ref{tab:parameter_comparison}) allowed predictions of BRD dynamics over a 30-day period, achieving forecasting accuracy with a root mean squared error (RMSE) below 5\% in certain farms. However, the general applicability of the average pathogen model across all scenarios warrants caution. We hypothesize that this simplification could limit its accuracy in predicting outbreaks driven primarily by viral infections. Indeed, Picault himself stated, "our assumption that the same 'average' pathogen could be used for all scenarios is indeed questionable. BRD is intrinsically a multi-pathogen disease, and the exact prevalence of each pathogen, their possible interactions, as well as the diversity of strains, can be expected to change the dynamics of infection and disease severity \cite{Kudirkiene2021, Becker2020}. In this study we assumed an average pathogen to keep the model as simple as possible. However, in further study, model parameters reflecting microbiological characteristics (e.g., the mean duration of infectiousness and the pathogen transmission rate) could be made pathogen-specific to allow for comparisons between various pathogens."
 
     \begin{table}[h]
         \centering
@@ -116,9 +94,30 @@ This research provided three core contributions:
       \caption{Asymptomatic forecast: ground truth vs predictions of an average pathogen mechanistic model}
       \label{fig:prognosis-chap1}
     \end{figure}
+
+    \item A deep learning model based on a spatio-temporal CNN-RNN architecture was trained to classify animals’ clinical health status (symptomatic or asymptomatic) using pulmonary ultrasound videos. This model achieved an accuracy of approximately 72\% (table \ref{tab:feature_extractor_performance}). Specifically, the deep learning architecture combined convolutional neural networks (CNNs), serving as spatial feature extractors, and recurrent neural networks (RNN), which captured temporal information. Throughout the experiments, only the feature-extractor component—the CNN architecture—was varied, while the RNN architecture remained fixed across all tested models. The CNN's goal was to identify and extract relevant spatial features within individual ultrasound frames, such as lesions, pleura lines, or other anatomical details indicative of BRD. Conversely, the RNN aimed to leverage temporal sequences of these extracted features to model their evolution over the video duration. Different CNN architectures were evaluated, including EfficientNetB7, InceptionResnetV2, InceptionV3, VGG16, and an ensemble model combining InceptionV3 with InceptionResnetV2. Among these architectures, InceptionV3 achieved the highest performance, with a weighted F1-score of 70\%, precision of 72\%, recall of 69\%, and an overall accuracy of 69\%. In contrast, VGG16 demonstrated significantly lower performance, yielding an F1-score of only 14\%. The performance of the final selected deep learning model was assessed on two separate farms to verify its robustness and generalizability under contrasting practical conditions.
     
-    \item Creation of an original dataset comprising pulmonary ultrasound videos with corresponding veterinary clinical annotations, providing a valuable resource for future BRD diagnostic and epidemiological research. Data collection occurred from January to June 2023, spanning a 30-day period post-arrival of calves on nine farms, each managing multiple batches of animals. Clinical annotations classified animals as symptomatic or asymptomatic according to veterinary-defined criteria (rectal temperature above 39.7°C and presence of at least one clinical symptoms such as cough or nasal discharge). Practical constraints, including animal immobilization, shaving the scan area, and veterinary availability, limited data quantity to approximately thirty annotated ultrasound videos. [be more factual on the quantity of observation per class]
-    
+    \begin{table}[h]
+        \centering
+        \renewcommand{\arraystretch}{1.2} % Adjust row height for better readability
+        \begin{tabularx}{\linewidth}{l *{4}{>{\centering\arraybackslash}X}}
+            \toprule
+            Feature Extractor & \small Weighted Precision & \small Weighted Recall & \small Weighted F1-score & \small Accuracy \\
+            \midrule
+            
+            EfficientNetB7 & 0.67 & 0.62 & 0.63 & 0.62 \\
+            InceptionResnetV2 & 0.71 & 0.50 & 0.49 & 0.50 \\
+            InceptionV3 & \textbf{0.72} & \textbf{0.69} & \textbf{0.70} & \textbf{0.69} \\
+            VGG16 & 0.09 & 0.31 & 0.14 & 0.31 \\
+            InceptionV3 + InceptionResnetV2 & 0.71 & 0.62 & 0.63 & 0.62 \\
+            
+            \bottomrule
+        \end{tabularx}
+        \caption{Diagnosis performance of different deep learning architecture}
+        \label{tab:feature_extractor_performance}
+    \end{table}
+    % \newpage 
+        
 \end{enumerate}
 
 These results demonstrate the individual feasibility of both diagnostic automation using deep learning and epidemiological prognosis via mechanistic modelling. However, the two phases—diagnosis and prognosis—were not yet integrated into a complete predictive pipeline. Results highlighted the limitations of employing an average pathogen model universally, as BRD is intrinsically a multi-pathogen disease, and pathogen-specific variations significantly influence infection dynamics and disease severity. In the next chapter, methodologies for selecting the optimal prognosis expert model from multiple alternatives using outbreak observations will be discussed. 
@@ -150,6 +149,7 @@ La maladie respiratoire bovine (BRD) est une pathologie fréquente et complexe q
 
 Le projet SEPTIME, dans lequel s’inscrit ce travail de thèse, a permis la collecte de nombreuses données empiriques issues d’échographies pulmonaires enregistrées directement dans des élevages bovins durant les années 2023 et 2024. À partir de ces vidéos échographiques annotées par des vétérinaires experts, nous avons exploré deux approches complémentaires afin d’améliorer le diagnostic et le pronostic de la BRD :
 
+
 \begin{enumerate} 
     \item L’utilisation de modèles d’intelligence artificielle (apprentissage profond) permettant d’automatiser rapidement la détection des cas cliniques de BRD à partir d’échographies pulmonaires. Ces modèles montrent un bon potentiel avec une précision atteignant environ 72\% dans la reconnaissance automatique de la maladie.
 
@@ -157,12 +157,9 @@ Le projet SEPTIME, dans lequel s’inscrit ce travail de thèse, a permis la col
 
 \end{enumerate}
 
-% Cependant, bien que rapide et pratique, l’échographie pulmonaire reste difficile à interpréter car les images obtenues sont souvent en noir et blanc, bruitées, et ne montrent que des formes en deux dimensions. Certaines lésions situées profondément dans les poumons peuvent ainsi passer inaperçues. Malgré ces limites, cette méthode reste précieuse, car elle fournit rapidement des informations critiques à l’éleveur, permettant ainsi une prise en charge précoce de la maladie.
 
 Ces résultats démontrent la faisabilité individuelle de l'automatisation du diagnostic et du pronostic à l'aide de l'apprentissage profond et du pronostic épidémiologique via la modélisation mécaniste. Le chapitre suivant aborde les méthodologies de sélection du modèle expert de pronostic parmi de multiples alternatives en utilisant des observations cliniques.
 
 \section{Proceedings published in Society for Veterinary Epidemiology and Preventive Medicine, 2024}
 
 \includepdf[pages=-]{articles/SVEPM.pdf}  % Replace with your actual filename
-
-
