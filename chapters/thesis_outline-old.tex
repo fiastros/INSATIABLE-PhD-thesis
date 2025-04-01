@@ -1,0 +1,146 @@
+\section{Thesis objective and outline}
+
+\subsection{Towards an innovative and AI-based tool for controlling infectious disease in livestock farming}
+% \subsection{Exploring the complementarities between deep learning and mechanistic epidemiological models}
+
+
+La propagation et la maîtrise de maladies animales infectieuses en élevage implique la compréhension et le contrôle d’un système complexe, avec des paramètres intrinsèques (souches des agents pathogènes, pratiques d'élevage) et extrinsèques (méthode de détection et de lutte) variables dans le temps. 
+Comparé aux méthodes conventionnelles de contrôles où [identify the biggest drawbacks of conventional methods: les biais d'observations, le manque d'expertise par manque de véto, ...], l’intelligence artificielle se revèle être un outil privilégié pour conceptualiser une épidémie, la modéliser et anticiper sa dynamique par simulation [Ezanno et al. 2021], ce qui permet a minima d’évaluer et de comparer divers scénarios de lutte, mais aussi d’élaborer des outils d’aide à la décision (OAD), co-construits avec les acteurs de terrain de la santé (éleveurs, vétérinaires, zootechniciens, décideurs publics) [Ezanno et al 2018]. L'actuelle période de digitalisation de l’agriculture voit se renforcer la relation des acteurs à ces OAD via l'émergence d'outils d’IA construisant des descripteurs, notamment zootechniques, qui étaient autrefois une charge de travail pour les exploitants. En particulier, dans le cadre de l’agriculture de précision, on voit se développer l’implantation de capteurs qui visent à surveiller en continu des variables physiologiques (à l’échelle individuelle) ou environnementales (à l’échelle de l’exploitation) pour déclencher des alertes de court terme (quelques heures ou quelques jours) relatives au cycle de vie des animaux (mises-bas, chaleurs), à leur bien-être, ou dans le domaine végétal, à des risques météorologiques (risque hydrique ou thermique) ou écologiques (invasions de ravageurs) [Liakos et al 2018]. En matière de santé, particulièrement lorsqu'il s'agit de prédire des maladies infectieuses, les alertes issues de capteurs sont assez peu spécifiques, conduisant à un nombre important de faux positifs qui constituent autant de surcharge cognitive pour les exploitants, amenés soit à ignorer ces alertes à cause de leur manque de pertinence, soit à multiplier les traitements inopportuns. Concevoir des méthodes permettant, en dépit du manque de spécificité de telles alertes, de construire des recommandations pertinentes et sur une échelle de temps plus longue et cohérente avec la planification humaine (plusieurs jours ou plusieurs semaines), reste donc à ce jour une question de recherche ouverte et à laquelle ce sujet de thèse doit contribuer.
+
+
+
+
+
+Precision agriculture provides powerful tools enabling automation of real-world observations through various sensors. Throughout this thesis, we have leveraged such tools to acquire contextual observational data essential for studying an infectious disease in livestock farming. However, sensor-based observations, although rich and increasingly accessible, represent only partial information regarding complex and unpredictable disease dynamics, aptly summarized by Yoan Bourhis (2017): "Nos observations ne révèlent que la partie émergée d’un iceberg au comportement complexe et peu prévisible."
+
+Thus, a central question guiding this thesis is: How can sensor observations be effectively employed to study infectious diseases and support informed decision-making?
+
+Our main hypothesis is that the most scientifically robust approach to contemporary quantitative questions in animal health, particularly regarding livestock infectious diseases, lies in combining complementary artificial intelligence methods, specifically deep learning and mechanistic epidemiological models. Such integration leverages deep learning’s capabilities for processing and extracting short-term insights from unstructured (video, image or text) observations  and the extrapolative capacities of stochastic epidemiological models grounded in explicit theoretical knowledge for long-term insights. This combination aims to better link real-world observations obtained through sensors with our theoretical knowledge in order make make relevant evidence-based recommendations at a larger temporal scales.
+
+This naturally raises another foundational question addressed in this thesis:
+In what ways can deep learning complement mechanistic epidemiological models in epidemiology ?
+
+Complex animal health problems, including the study and control of infectious diseases, require distinct yet interconnected types of expertise: diagnosing diseases from immediate observational data, making reliable prognoses about future disease dynamics, and ultimately providing actionable recommendations. Diagnosis relies predominantly on processing unstructured field observations from sensors—thus favouring deep learning. Robust prognosis, however, relies on explicit theoretical knowledge and interpretability—domains inherently suited to mechanistic models. Finally, the quality of actionable recommendations is critically dependent on effectively bridging these two forms of expertise.
+
+This thesis proposes a loosely coupled methodology inspired by the statistical principle known as the "Mixture of Experts" (MoE). This modular integration allows each expert to specialize explicitly in its distinct role (diagnosis and prognosis), enhancing accuracy, resource efficiency, interpretability, and scalability.
+
+Addressing these considerations, the scientific questions explored throughout this thesis are:
+
+\begin{enumerate}
+    \item To what extent can deep learning reliably automate short-term diagnosis using limited, noisy, and context-specific observational data from sensors, such as lung ultrasounds ? 
+    
+    \item How can mechanistic epidemiological models be reliably parametrized using empirical veterinary observations to provide accurate long-term prognosis for infectious diseases ?
+    
+    % \item Given multiple mechanistic epidemiological models validly representing different expertise symptomatic dynamics of infectious diseases, how can observational data alone reliably guide the selection of the most appropriate mechanistic model to enable pathogen-specific disease management ?
+    
+    % \item How can observational data alone guide the selection of the best mechanistic prognosis expert when they are multiple epidemiological models expert for expliciting different mechanisms of the infectious disease.
+    
+    \item Given multiple mechanistic epidemiological models representing different but valid expertise in prognosing an outbreak, how can observational data alone reliably guide the selection of the most appropriate mechanistic model to enable pathogen-specific disease management.
+
+    \item How can deep learning and mechanistic models be effectively integrated into a hybrid diagnostic-to-prognostic pipeline that leverages their complementary strengths to improve livestock disease management ?
+    
+    \item How can uncertainties inherent in sensor-based observations be explicitly accounted for within a hybrid modelling approach, and how does this influence diagnostic and prognostic reliability ?
+\end{enumerate}
+
+
+\textit{\textbf{Keywords:}} methodological synergy, complementary expertise, deep learning, mechanistic epidemiological models, diagnostic accuracy, prognostic reliability, uncertainty quantification, Mixture of Experts, modular architecture, scalability.
+
+\subsection{Application to study Bovine Respiratory Diseases}
+% In this subsection, I want to show that BRD are a good example for the application of our methodology
+
+Bovine Respiratory Diseases (BRD) refer to a group of complex, multifactorial infectious disorders predominantly affecting young cattle in fattening farms. They are characterized by inflammation of the respiratory tract, causing symptoms such as cough, nasal discharge, fever, reduced feed intake, impaired growth, and occasionally, death. Although several pathogens (viruses, bacteria, mycoplasma) contribute to BRD, their clinical presentation is frequently non-specific, complicating accurate and timely diagnosis.
+
+Diagnosing and managing BRD effectively remains notoriously challenging for several reasons:
+\begin{itemize}
+    \item Non-specific Clinical Signs: Clinical manifestations of BRD (e.g., cough, fever) are highly unspecific and overlap significantly with other diseases. Consequently, visual appraisal by farmers and veterinarians often results in misdiagnoses or delayed diagnoses, leading to suboptimal treatment strategies.
+    \item Limitations of Biological Diagnostic Methods: Laboratory methods (e.g., Polymerase Chain Reaction (PCR), serology) provide increased specificity and accuracy compared to clinical appraisal alone. However, these tests are invasive, expensive, and time-consuming, delaying actionable results and increasing animal stress and discomfort. Moreover, logistical issues frequently limit their practicality, especially in large-scale operations.
+    \item False Positives and Diagnostic Uncertainty: Due to the multifactorial nature of BRD (co-infections, pathogen interactions, host susceptibility variability), diagnostic and prognostic accuracy remain challenging. These difficulties result in inappropriate usage of antimicrobials, contributing to the rising threat of antimicrobial resistance and negatively impacting animal welfare.
+\end{itemize}
+
+(Complexity of BRD Etiology) BRD arises from complex interactions between intrinsic and extrinsic factors:
+\begin{itemize}
+    \item Pathogen Diversity and Interactions: Multiple pathogens (e.g., Mannheimia haemolytica, Pasteurella multocida, Bovine Respiratory Syncytial Virus, etc.) are frequently involved, potentially interacting in complex and poorly understood ways. Current veterinary research continues to explore these interactions to better characterize clinical markers useful for early detection, prognosis, and improved control measures (as exemplified in recent doctoral works, e.g., Maud’s research).
+    \item Influence of Environmental and Management Practices: External factors such as farm management, biosecurity measures, herd density, transportation stress, and climatic conditions profoundly influence the occurrence and severity of BRD outbreaks. This intrinsic and extrinsic complexity significantly complicates disease modelling, prognosis, and control efforts.
+\end{itemize}
+
+
+(Socioeconomic Impact of BRD in Livestock Farming) Bovine Respiratory Diseases represent a major health and economic burden for farmers, veterinarians, and the broader livestock industry:
+\begin{itemize}
+    \item Economic Costs and Mortality Rates: BRD accounts for substantial economic losses in terms of reduced growth performance, increased mortality rates, and heightened veterinary and medicinal expenses. Particularly in French beef fattening farms, BRD is considered one of the most prevalent and economically significant animal health problems.
+    \item Antimicrobial Usage and Ethical Concerns: Frequent misdiagnosis or delayed interventions lead to inappropriate use of antibiotics, fostering antimicrobial resistance. This concern raises ethical, public health, and animal welfare issues and highlights the urgent need for improved diagnostics and targeted therapeutic approaches.
+\end{itemize}
+
+(Existing Technological Approaches and Limitations) Recent research has applied sensor technologies (e.g., intra-ruminal temperature sensors, accelerometers, audio and video analytics) coupled with traditional machine learning and deep learning methods to improve BRD detection. Although promising, these data-driven approaches often:
+\begin{itemize}
+    \item Exhibit high false-positive rates due to limited specificity in clinical signs or ambiguous sensor outputs.
+    \item Require substantial volumes of training data to achieve reliable performance, a constraint given practical difficulties in generating extensive labelled datasets.
+    \item Struggle to predict disease progression or forecast epidemiological outcomes accurately over extended periods, thus limiting their use in proactive disease management and intervention strategies.
+    \item Lack the capability to explore unobservable scenarios, such as hypothetical outbreaks or unrecorded infections, limiting their utility for scenario-based disease control planning.
+\end{itemize}
+
+There are also been mechanistic models developed before and throughout this thesis to model and study BRD (see Originality of this thesis). They have never applied to real-world observations. In this thesis, we employed these models to assess our methodology.
+
+By bridging sophisticated deep learning feature extraction with robust, interpretable mechanistic models, this hybrid approach could significantly advance the ability to manage BRD effectively—improving animal health, welfare, farm economics, and sustainability and ecological issues. 
+
+This thesis leverages BRD as a scientifically significant case study to validate a hybrid deep-mechanistic methodology, explicitly addressing the limitations noted above, with the aim of substantially improving diagnosis, prognosis, and disease management strategies in livestock farming.
+
+\textit{\textbf{Keywords:}} Bovine Respiratory Disease, infectious disease dynamics, antimicrobial resistance, multi-modal data integration, predictive analytics, animal welfare.
+
+
+\subsection{Originality of this thesis}
+
+
+\paragraph{interdisciplinarity: synergy of diverse domain expertise }
+% In this subsection, I want to explain the thesis CIFRE, with the mixture of domain expertise: epidemiological mechanistic modelling, statistical inference approaches, computer vision and deep learning, hardware and software engineering Mais également la collaboration avec les vétos. Préciser que c'est une thèse cifre (ce que peut apporter/ et les gains en retours pour adventiel: les côté applicatif, igepp (deep), Dynamo (mécaniste, inférence...). It is original to have as many different domain experts come together to work on one subject right ?
+
+Uniquely structured via a CIFRE agreement, this thesis integrates expertise from diverse domains:  
+\begin{itemize}
+    \item Adventiel: Providing strong expertise in software and hardware engineering for precision agriculture, particularly focusing on practical applications, technical robustness, and user-friendly decision support tools.
+    \item BIOEPAR-dynamo: Offering significant theoretical and applied expertise in mechanistic epidemiological modelling and statistical inference methods, including parameter inference and calibration techniques, tailored specifically to livestock disease dynamics. Emulsion (generic simulation engine for epidemiological mechanistic models)
+    \item IGEPP-demecologie: Contributing substantial expertise in statistical inference, deep learning, and computer vision methodologies.
+    \item Collaborations established through multi-partner projects such as SEPTIME and MULTIPAST, involving key contributors (e.g., Baptiste-Sorin), enhance the thesis’s capacity to integrate different forms of scientific expertise.
+\end{itemize}
+Such interdisciplinary collaboration enhances methodological robustness and practical relevance, facilitating broader acceptance among farmers and veterinary stakeholders.
+
+
+\paragraph{Data collection: enriching empirical knowledge}
+
+A significant originality of this thesis is the comprehensive observational dataset collected specifically to study BRD. This dataset, comprising multi-modal sensor data, lung ultrasound videos, and expert veterinary annotations, simultaneously addresses fundamental scientific questions and practical agricultural needs, potentially informing innovative and practical decision-support tools.
+
+\begin{itemize}
+    \item descrire ici la mise en place du protocol experimental avec la collecte de données pour répondre à des questions de biologiques sur le diagnostique et le prognostique de BRD (thèse maud) mais également des questions de méthodo modélisation (deep et méca)
+    \item One major originality is the comprehensive and detailed collection of observational data from real livestock farms, specifically tailored to study Bovine Respiratory Diseases (BRD). The thesis provides explicit descriptions of this extensive dataset, composed of multi-modal sensor data, video recordings, and expert veterinary annotations
+    \item The collected dataset enables exploration of both fundamental scientific questions and applied research inquiries, potentially leading to the development of innovative, practical decision support tools applicable directly within the livestock industry. (citer la thèse de maud, car elle utilise ces données afin d'accroître la connaissance sur l'identification de biomarqueurs des BRD) 
+\end{itemize}
+
+
+\paragraph{Methodology: diagnosis and prognosis expertise}
+
+This thesis proposes an original methodological framework that combines deep learning and mechanistic epidemiological modelling, with articulated contributions:
+\begin{itemize}
+    \item Automated Diagnosis from limited and Noisy Observational Data from a sensor: Demonstrating the feasibility and robustness of deep learning (CNN-RNN) approaches to automatically diagnose Bovine Respiratory Disease (BRD) using unstructured, context-specific sensor data (lung ultrasound videos), achieving reliable diagnostic accuracy despite limited data availability.
+    \item automated prognosis from limited observations: establishing a robust methodological framework to independently parametrize and calibrate stochastic mechanistic models directly from empirical veterinary observations collected on-farm. This significantly enhances the identifiability, predictive accuracy, and practical relevance of long-term epidemiological forecasts for BRD management.
+    \item Introducing clear numerical methods (Approximate Bayesian Computation with multinomial logistic regression) for reliably selecting among multiple competing mechanistic epidemiological models based solely on symptomatic observational data. This enables accurate pathogen-specific model identification, substantially reducing antibiotic misuse and improving farm economic outcomes.
+    \item Structured Deep Mechanistic Modelling for Adaptive Knowledge Integration: proposing and validating a structured hybrid modelling pipeline (Bayesian Deep Mechanistic approach) explicitly linking deep learning-generated diagnostic information to mechanistic epidemiological prognosis. This novel approach grounds theoretical epidemiological knowledge directly within realistic, unstructured sensor observations, thereby providing a comprehensive, adaptive methodological baseline.
+    \item Proxy Robustness and Explicit Uncertainty Quantification: Enhancing hybrid model reliability by explicitly quantifying and incorporating uncertainties inherent in noisy sensor observations (through Bayesian methods). This methodological improvement significantly reduces diagnostic and prognostic errors, thereby mitigating negative impacts arising from observational uncertainty.
+    \item Modularity and Methodological Flexibility: Emphasizing methodological modularity, this thesis demonstrates how domain experts (veterinarians, deep learning specialists, mechanistic modellers) can independently develop, maintain, retrain, and adapt each modelling component. Such modularity contrasts favourably with tightly integrated approaches (e.g., Neural Differential Equations or Physics-Informed Neural Networks), offering significant advantages in interpretability, scalability, ease of use, reduced data requirements, and enhanced generalizability across diverse epidemiological contexts.
+\end{itemize}
+
+
+\textit{\textbf{Keywords:}} Hybrid modelling, Deep learning, Mechanistic epidemiological modelling, Automated diagnosis, parametrization, Model identifiability, Model distinguishability, Bayesian inference, Observational uncertainty, Robust diagnostics, Proxy robustness, Modularity, Mixture-of-Experts, Sensor data integration, Knowledge coherence, Unstructured observational data, Model identifiability, Adaptive epidemiological forecasting, Interpretability, Methodological flexibility.
+
+
+\subsection{About the methodological approach}
+
+The thesis structure progresses methodologically across three chapters:
+
+Chapter 2 - Foundational structures: independent diagnosis and prognosis expertise. 
+This chapter assesses independently the performance of the deep learning model in automating the BRD diagnosis from lung ultrasound video data, reaching an accuracy of 72\%. It also evaluates a stochastic mechanistic epidemiological model parametrized by veterinarian-provided clinical observations, confirming its utility for robust long-term BRD prognosis, albeit with moderate calibration precision due to observational data scarcity and inherent uncertainties in observations. Demonstrating feasibility of deep learning diagnosis from limited, real-world sensor data and creating an original annotated dataset of lung ultrasound observations, forming an empirical foundation for further research. This directly addresses scientific questions 1 and 2.
+
+Chapter 3 - Structural synergism – Selecting appropriate mechanistic prognosis experts. This chapter addresses a critical methodological gap: distinguishing among multiple valid mechanistic models, each suited to distinct pathogen-specific scenarios. Employing synthetic outbreak scenarios and a Bayesian inference framework, the chapter demonstrates how symptomatic dynamics can reliably inform pathogen-model identification. Integrating this approach with bioeconomic evaluations, we quantify the tangible benefits (improved net profits and reduced antimicrobial usage) resulting from pathogen-informed antibiotic treatment decisions. This directly addresses scientific question 3.
+
+Chapter 4 - A deep mechanistic approach.  This chapter proposes a Bayesian deep mechanistic approach explicitly integrating observational uncertainties into both diagnostic and prognostic stages. Employing Monte Carlo Dropout (MCD) within the deep learning model, we quantify uncertainty in lung ultrasound observations and propagate it into mechanistic model calibration through uncertainty-weighted inference. This approach reduces diagnostic uncertainty (error rate reduced from 39\% to 27.2\% RRMSE), significantly enhancing model robustness and reliability for practical livestock management scenarios. This integration enhances decision-making robustness and aligns closely with real-world constraints where sensor observations are often noisy or incomplete. thus explicitly addressing scientific questions 4 and 5 by demonstrating how uncertainty-informed hybrid methodologies enhance practical livestock management reliability.
+
+General discussion - The final section synthesizes the findings across all chapters, critically evaluating the methodological approaches, their strengths and limitations, and the broader implications of the results. Recommendations for future research and applications are also discussed, highlighting the potential for scalability and interdisciplinary adaptation.
+
+

@@ -3,6 +3,8 @@
 
 \chapter{General discussion} % Main chapter title
 
+% 
+
 
 %----------------------------------------------------------------------------------------
 %	SECTION 
@@ -13,6 +15,8 @@
 %-----------%-----------
 
 \subsection{Methodological progress}
+
+
 
 \paragraph{Integration of sensor-based and mechanistic models} A central methodological advancement of this thesis lies in the integration of deep learning diagnostic tools and mechanistic epidemiological models for improved disease management, specifically applied to the Bovine Respiratory Disease (BRD) context. This thesis explicitly addressed the complexities inherent in integrating disparate model types, reconciling sensor-driven, short-term diagnostic accuracy with long-term epidemiological prognosis reliability. Inspired by the "Mixture of Experts" (MoE) concept, our methodology systematically separates diagnostic and prognostic tasks, assigning each model type to its respective domain of expertise. This loose coupling has two main methodological strengths:
 
@@ -60,7 +64,7 @@ Il reste à constuire une bdd unifiés pour faciliter la publication et l'utilis
 \section{Limitations}
 Notamment (pas limitatif : reprendre chaque contribution et chaque question posée dans l'introduction générale)
 \begin{itemize}
-    \item conditions concrètes de mise en \oe{}uvre en élevage, obstacles pratiques, empiriques et théoriques au fonctionnement des ces méthodes, à leur adoption + discuter le rôle des vétérinaires (seuls habilités à prescrire)
+    \item conditions concrètes de mise en oeuvre en élevage, obstacles pratiques, empiriques et théoriques au fonctionnement des ces méthodes, à leur adoption + discuter le rôle des vétérinaires (seuls habilités à prescrire)
     \item spécificités possibles des BRD / du système de production par rapport à la méthodologie (capacités d'extrapolation ?)
 \end{itemize}
 
@@ -96,6 +100,9 @@ Notamment (pas limitatif : reprendre chaque contribution et chaque question pos�
 \paragraph{A deep mechanistic model with prognosis expert selection} An important future research avenue involves integrating the developed deep mechanistic diagnostic frameworks (chapter 4) with the pathogen-specific prognosis expert selection mechanisms validated in chapter 3, leveraging the pulmonary ultrasound video datasets collected (chapter 2). The envisioned approach would utilize deep learning predictions from ultrasound videos to infer clinical states at discrete assessment points, subsequently employing numerical solvers (e.g., ABC methods) to distinguish the most likely pathogen-specific mechanistic models. This approach could be validated by comparison with ground-truth pathogen identification via biological examination (blood samples). Through such validation, future research could rigorously quantify the direct benefits of pathogen-informed mechanistic interventions in terms of antimicrobial usage reduction and net profit optimization, thus bridging diagnostic precision, epidemiological forecasting accuracy, and economic viability in livestock management. 
 
 \paragraph{Application to related domains - transferability} Finally, the modular methodological framework proposed in this thesis inherently facilitates adaptation and scalability across diverse agricultural contexts. Future work could explore transferring and assessing the coupling methodology to related agricultural domains, such as pig batch management (Sicard vianney thèse) or plant disease diagnostics ( N parisey articles). Such applications would test and potentially confirm the generalizability and scalability of our structured modular approach, further extending its methodological relevance and practical impact across broader agricultural management practices.
+
+
+pour faire références à la thèse d'Hassan, on peut également regarder tout les questions autours du comment disposer les capteurs pour optimiser la collecte d'informations riche et miniser la consommation d'energie (regarder la problèmatique de Hassane). 
 
 \section{Conclusion}
 
