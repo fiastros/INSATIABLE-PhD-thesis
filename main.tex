@@ -27,7 +27,7 @@
     pdfpagemode=FullScreen,
     }
 \usepackage[
-    %backend=biber, 
+    % backend=biber, 
     natbib=true,
     style=numeric,
     sorting=none
@@ -141,7 +141,7 @@
 %----------------------------------------------------------------------------------------
 %	RESUME ET ABSTRACT PAGE
 %----------------------------------------------------------------------------------------
-\input{auxilliaires/abstract} %résumé 
+ 
 
 %----------------------------------------------------------------------------------------
 %	QUOTATION PAGE ou DEDICACE
@@ -149,13 +149,15 @@
 \clearpage
 \vspace*{0.2\textheight}
 
+
 \begin{quote}
-\textbf{Citation example :} \\
-Comme lorsque la brume se dissipe, \\ le regard peu à peu trouve une figure\\ dans la vapeur dont les airs sont épaissis, \\ ainsi, perçant l'élément lourd et obscur\\ à mesure que nous approchions du bord, \\l'erreur me quittait ...
+\textbf{
+"La connaissance s'acquiert par l'expérience, tout le reste n'est que de l'information".
+}
 \end{quote} \bigbreak
 
 \hfill 
--L’Enfer – Chant XXXI, La Divine Comédie, Dante Alighieri
+- Albert Einstein (n.d.)
 
 
 
@@ -178,8 +180,8 @@ Comme lorsque la brume se dissipe, \\ le regard peu à peu trouve une figure\\ d
 \tableofcontents % Prints the main table of contents
 \listoffigures % Prints the list of figures
 \addcontentsline{toc}{chapter}{List of figures}
-\listoftables % Prints the list of tables
-\addcontentsline{toc}{chapter}{list of tables}
+% \listoftables % Prints the list of tables
+% \addcontentsline{toc}{chapter}{List of tables}
 
 %----------------------------------------------------------------------------------------
 %	Liste des abréviations-
@@ -211,6 +213,8 @@ Comme lorsque la brume se dissipe, \\ le regard peu à peu trouve une figure\\ d
 \fancyhead[LE]{\textsc{\chaptername~\thechapter}}
 
 \input{chapters/chap1-text}
+\input{chapters/thesis_outline}
+\input{chapters/thesis_outline_french}
 \input{chapters/chap2-text}
 \input{chapters/chap3-text}
 \input{chapters/chap4-text}
@@ -242,6 +246,6 @@ Comme lorsque la brume se dissipe, \\ le regard peu à peu trouve une figure\\ d
 
 %\input{auxilliaires/glossaire} 
 
-
+\input{auxilliaires/abstract} %résumé
 
 \end{document}  
